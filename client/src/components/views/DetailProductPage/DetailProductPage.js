@@ -13,13 +13,9 @@ function DetailProductPage(props) {
     useEffect(() => {
         Axios.get(`/api/product/products_by_id?id=${productId}&type=single`)
         .then(response => {
-            if(response.data.success) {
-                console.log(response.data);
-                setProduct(response.data.product[0]);
-            } else {
-                alert("상품의 상세정보를 가져오지 못했습니다.")
-            }
+            setProduct(response.data[0]);
         })
+        .catch(err => alert(err));
     }, [])
 
     return (
@@ -40,10 +36,6 @@ function DetailProductPage(props) {
                     <ProductInfo detail={Product}/>
                 </Col>
             </Row>
-
-            
-
-            
 
         </div>
     )

@@ -125,7 +125,7 @@ function LandingPage(props) {
     return (
         <div style={{ width: '75%', margin: '3rem auto' }}>
             <div style={{ textAlign: 'center' }} >
-                <h2> Let's Travel Anywhere <Icon type="rocket" /></h2>
+                <h2> 원하는 곳으로 여행을 떠나요! <Icon type="rocket" /></h2>
             </div>
 
             {/* 필터 */}

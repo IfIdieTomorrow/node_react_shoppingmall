@@ -90,13 +90,20 @@ router.post("/products", (request, response)=>{
 router.get("/products_by_id", (request, response)=> {
     // productId를 이용해서 상세정보 가져오기
     let type = request.query.type;
-    let productId = request.query.id;
+    let productIds = request.query.id;
 
-    Product.find({ _id : productId })
+    if(type === "array"){
+        let ids = request.query.id.split(',')
+        productIds = ids.map(item => {
+            return item
+        })
+    }
+
+    Product.find({ _id : {$in: productIds} })
     .populate('writer')
     .exec((err, product) => {
         if(err) return response.status(400).send(err)
-        return response.status(200).send({ success: true, product })
+        return response.status(200).send(product)
     })
 
 });
